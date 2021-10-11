@@ -13,6 +13,8 @@ public class SpringCloudConfig {
         return builder.routes()
                 .route("auth" , r -> r.path("/api/auth/**")
                         .uri("lb://AUTH-SERVICE"))
+                .route("accounts" , r -> r.path("/api/accounts/**")
+                        .uri("lb://ACCOUNTS-SERVICE"))
                 .build();
     }
 

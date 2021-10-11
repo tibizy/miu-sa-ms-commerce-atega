@@ -11,7 +11,7 @@
 	<groupId>com.miusaatega</groupId>
 	<artifactId>ms.commerce-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms.commerce-gateway</name>
+	<name>gateway-service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
