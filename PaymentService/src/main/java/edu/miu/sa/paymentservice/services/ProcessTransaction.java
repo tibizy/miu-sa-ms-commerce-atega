@@ -1,12 +1,12 @@
 package edu.miu.sa.paymentservice.services;
 
-import edu.miu.sa.paymentservice.dtos.BasicResponse;
-import edu.miu.sa.paymentservice.dtos.Customer;
-import edu.miu.sa.paymentservice.dtos.PaymentDTO;
+import edu.miu.sa.paymentservice.dtos.*;
 import edu.miu.sa.paymentservice.processor.BankService;
 import edu.miu.sa.paymentservice.processor.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 @Service
 public class ProcessTransaction {
@@ -24,20 +24,30 @@ public class ProcessTransaction {
         transactionService.addTransaction(request);
 
         Customer customer = accountService.getCustomer(request.customerReference);
+        var customerPayments = customer.getPayments().stream().filter(x -> x.getDefault())
+                .collect(Collectors.toList());
 
-        //get default payment method
-        if(customer.getPayments().stream().distinct().){
-
+        Card cardRequest = new Card();
+        Bank bankRequest = new Bank();
+        for (var payment : customerPayments) {
+            if(payment.getDefault() && (payment.getType() == "CC")){
+                cardRequest.setCardNumber(payment.getMetaData().getCardNumber());
+                cardRequest.setNameOnCard(payment.getMetaData().getNameOnCard());
+                cardRequest.setExpDate(payment.getMetaData().getExpDate());
+            }
+            else if(payment.getDefault() && (payment.getType() == "BANK")){
+                bankRequest.setAccountNo(payment.getMetaData().getAccountNo());
+                bankRequest.setRoutingNo(payment.getMetaData().getRoutingNo());
+                bankRequest.setAccountName(payment.getMetaData().getAccountName());
+            }
         }
-
 
         switch(request.type){
             case CARD:
-
-                response = cardService.payByCard();
+                response = cardService.payByCard(cardRequest);
                 break;
             case BANK:
-                response = bankService.payByBank(new Object());
+                response = bankService.payByBank(bankRequest);
                 break;
             default:
                 break;
@@ -45,11 +55,10 @@ public class ProcessTransaction {
 
         //TO DO: update payment with response from transaction services
         if(!response.getSuccessful()){
-
+            return response;
         }
 
-
-        transactionService.updateTransaction();
+        //transactionService.updateTransaction();
         return response;
     }
 }
