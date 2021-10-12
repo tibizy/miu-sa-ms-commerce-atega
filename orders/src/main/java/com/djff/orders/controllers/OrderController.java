@@ -53,7 +53,7 @@ public class OrderController {
         paymentRequest.setType(PaymentRequest.PaymentType.BANK);
         paymentRequest.setAmount(orderService.getOrderAmount(order));
 
-        PaymentResponse paymentResponse = restTemplate.postForObject("http://payment-service/payment", paymentRequest, PaymentResponse.class);
+        PaymentResponse paymentResponse = restTemplate.postForObject("http://payment-service/api/payment", paymentRequest, PaymentResponse.class);
 
         if(paymentResponse != null &&paymentResponse.getIsSuccessful()){
             orderService.updateOrderPaymentStatus(order);
