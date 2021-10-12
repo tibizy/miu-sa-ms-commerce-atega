@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import miu.sa.accountservice.enums.PaymentType;
 import miu.sa.accountservice.model.BankPayment;
 import miu.sa.accountservice.model.CreditCardPayment;
-import org.hibernate.annotations.Type;
-import org.json.JSONObject;
 
 import javax.persistence.*;
 import java.io.Serializable;
