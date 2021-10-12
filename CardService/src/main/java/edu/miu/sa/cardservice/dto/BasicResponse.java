@@ -1,8 +1,17 @@
-package edu.miu.sa.paymentservice.dtos;
+package edu.miu.sa.cardservice.dto;
 
 public class BasicResponse {
     private Boolean isSuccessful;
     private String responseCode;
+    private String responseDescription;
+
+    public Boolean getSuccessful() {
+        return isSuccessful;
+    }
+
+    public void setSuccessful(Boolean successful) {
+        isSuccessful = successful;
+    }
 
     public String getResponseCode() {
         return responseCode;
@@ -20,14 +29,8 @@ public class BasicResponse {
         this.responseDescription = responseDescription;
     }
 
-    private String responseDescription;
-
-    public Boolean getSuccessful() {
-        return isSuccessful;
-    }
-
-    public void setSuccessful(Boolean successful) {
-        isSuccessful = successful;
+    public BasicResponse(){
+        isSuccessful = false;
     }
 
     public BasicResponse(Boolean success)
@@ -35,6 +38,5 @@ public class BasicResponse {
         isSuccessful = success;
     }
 }
-
 
 

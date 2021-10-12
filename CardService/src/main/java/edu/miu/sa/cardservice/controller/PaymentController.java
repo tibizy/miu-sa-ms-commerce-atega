@@ -1,8 +1,8 @@
-package edu.miu.sa.paymentservice.controllers;
+package edu.miu.sa.cardservice.controller;
 
-import edu.miu.sa.paymentservice.dtos.BasicResponse;
-import edu.miu.sa.paymentservice.dtos.PaymentDTO;
-import edu.miu.sa.paymentservice.services.ProcessTransaction;
+import edu.miu.sa.cardservice.dto.BasicResponse;
+import edu.miu.sa.cardservice.dto.PaymentDTO;
+import edu.miu.sa.cardservice.services.CardPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +13,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/payment")
+@RequestMapping("api/")
 public class PaymentController {
 
     @Autowired
-    private ProcessTransaction ProcessTransaction;
+    CardPaymentService cardPaymentService;
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<BasicResponse> makePayment(@RequestBody PaymentDTO request){
-        BasicResponse response = ProcessTransaction.makePayment(request);
+    @RequestMapping(value = "/card/pay", method = RequestMethod.POST)
+    @Async
+    public ResponseEntity<BasicResponse> cardPayment(@RequestBody PaymentDTO request){
+        BasicResponse response = cardPaymentService.pay(request);
 
-        if(!response.getSuccessful()){
+        if(!response.isSuccessful){
             return new ResponseEntity<BasicResponse>(response, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<BasicResponse>(response, HttpStatus.OK);
