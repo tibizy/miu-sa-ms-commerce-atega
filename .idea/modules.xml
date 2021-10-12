@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BankService/BankService.iml" filepath="$PROJECT_DIR$/BankService/BankService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CardService/CardService.iml" filepath="$PROJECT_DIR$/CardService/CardService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PaymentService/PaymentService.iml" filepath="$PROJECT_DIR$/PaymentService/PaymentService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/account-service/account-service.iml" filepath="$PROJECT_DIR$/account-service/account-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-service/demo2.iml" filepath="$PROJECT_DIR$/product-service/demo2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/miu-sa-ms-commerce-atega.iml" filepath="$PROJECT_DIR$/.idea/miu-sa-ms-commerce-atega.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth-service/ms.commerce-auth.iml" filepath="$PROJECT_DIR$/auth-service/ms.commerce-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway-service/ms.commerce-gateway.iml" filepath="$PROJECT_DIR$/gateway-service/ms.commerce-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/registry-service/ms.commerce-registry.iml" filepath="$PROJECT_DIR$/registry-service/ms.commerce-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/orders/orders.iml" filepath="$PROJECT_DIR$/orders/orders.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shipping-service/shipping-service.iml" filepath="$PROJECT_DIR$/shipping-service/shipping-service.iml" />
+    </modules>
+  </component>
+</project>
