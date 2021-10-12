@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: bank-service;
+
+
+server:
+  port: 8790

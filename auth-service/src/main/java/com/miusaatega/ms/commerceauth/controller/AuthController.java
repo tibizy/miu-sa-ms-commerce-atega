@@ -3,6 +3,7 @@ package com.miusaatega.ms.commerceauth.controller;
 import com.miusaatega.ms.commerceauth.config.security.jwt.JwtUtil;
 import com.miusaatega.ms.commerceauth.models.AuthenticationRequest;
 import com.miusaatega.ms.commerceauth.models.AuthenticationResponse;
+import com.miusaatega.ms.commerceauth.models.User;
 import com.miusaatega.ms.commerceauth.services.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("api/auth")
@@ -47,10 +47,27 @@ class AuthController {
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
 
-        final String jwt = jwtTokenUtil.generateToken(userDetails);
+        final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        return ResponseEntity.ok(new AuthenticationResponse(token));
     }
 
+    @PostMapping("/verify")
+    public ResponseEntity<?> verifyAuthenticationToken(@RequestBody() AuthenticationResponse authResponse) {
+        String token = authResponse.getToken();
+        System.out.println("token: " + token);
+        String username;
+        try {
+            username = jwtTokenUtil.extractUsername(token);
+            System.out.println("Username: " + username);
+        }
+        catch (Exception e) {
+            return ResponseEntity.badRequest().body("Invalid Token");
+        }
+
+        return ResponseEntity.ok(new HashMap<String, String>(){{
+            put("id", username);
+        }});
+    }
 }
 
