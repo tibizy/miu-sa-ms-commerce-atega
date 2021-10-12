@@ -18,12 +18,17 @@ spec:
       - name: orders-service-app
         image: djff94/account-service:0.0.1-SNAPSHOT
         imagePullPolicy: Always
-        # resources:
-        #   limits:
-        #     memory: "128Mi"
-        #     cpu: "500m"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
         ports:
           - containerPort: 9292
+        env:
+            - name: MONGO_DB
+              value: orders
+            - name: MONGO_HOST
+              value: orders-mongo-db
 
 ---
 

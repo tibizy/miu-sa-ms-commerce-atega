@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: ORDER-SERVICE
+  data:
+    mongodb:
+      database: ${}
+      host: ${}
 
 eureka:
   client:

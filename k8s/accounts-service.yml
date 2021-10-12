@@ -21,9 +21,16 @@ spec:
         resources:
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "0.2"
         ports:
           - containerPort: 8282
+        env:
+          - name: SPRING_DATASOURCE_PASSWORD
+            value: root
+          - name: SPRING_DATASOURCE_URL
+            value: jdbc:mysql://account-service-mysql-db:3306/testdb?createDatabaseIfNotExist=true&useSSL=false
+          - name: SPRING_DATASOURCE_USERNAME
+            value: root
 
 ---
 
