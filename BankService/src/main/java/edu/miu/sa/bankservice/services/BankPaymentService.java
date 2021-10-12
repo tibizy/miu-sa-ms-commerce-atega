@@ -16,6 +16,7 @@ public class BankPaymentService {
         if(request.getAmount() < 20){
             response.setResponseCode(respCodes[1]);
             response.setResponseDescription(respMsgs[1]);
+            
         }
         else{
             response.setSuccessful(true);
