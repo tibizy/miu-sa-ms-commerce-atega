@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service-app
+  labels:
+    app: auth-service-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-service-app
+  template:
+    metadata:
+      labels:
+        app: auth-service-app
+    spec:
+      containers:
+      - name: auth-service-app
+        image: djff94/auth-service:0.0.1-SNAPSHOT
+        imagePullPolicy: Always
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+          - containerPort: 8181
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service-svc
+spec:
+  selector:
+    app: auth-service-app
+  ports:
+  - port: 80
+    targetPort: 8181
+

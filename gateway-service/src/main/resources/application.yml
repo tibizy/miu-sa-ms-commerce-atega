@@ -1,27 +1,34 @@
 spring:
     application:
         name: GATEWAY-SERVICE
-#    cloud:
-#        gateway:
-#            routes:
+    cloud:
+        gateway:
+            routes:
+                - id: ORDER-SERVICE
+                  uri: lb://ORDER-SERVICE
+                  predicates:
+                      - Path=/api/orders/**
 #                - id: auth-service
 #                  uri: lb://AUTH-SERVICE
 #                  predicates:
 #                      - Path=/api/auth/**
 
-management:
-    endpoints:
-        web:
-            exposure:
-                include: "*"
+#management:
+#    endpoints:
+#        web:
+#            exposure:
+#                include: "*"
 
 # Discovery Server Access
 eureka:
     client:
+        registerWithEureka: true
+        fetchRegistry: true
         serviceUrl:
-            defaultZone: ${EUREKA_URI:http://localhost:9191/eureka}
+            defaultZone: http://eureka-0.eureka.default.svc.cluster.:8761/eureka
     instance:
         preferIpAddress: true
+        hostname: eureka-0
 
 # HTTP Server
 server:

@@ -22,6 +22,11 @@ public class OrderController {
         this.restTemplate = restTemplate;
     }
 
+    @GetMapping
+    public String getOrders(){
+        return "Welcome to order endpoint";
+    }
+
     @GetMapping("/{customerId}")
     public ResponseEntity<Object> getCustomersOrders(@PathVariable String customerId){
         return ResponseEntity.ok(orderService.getCustomerOrders(customerId));

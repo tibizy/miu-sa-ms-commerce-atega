@@ -1,16 +1,9 @@
 server:
-  port: 9296
+  port: 9292
+
 spring:
   application:
-    name: CONG-SERVER
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/3d3n/test-config-server
-          clone-on-start: true
-  profiles:
-    active: native
+    name: ORDER-SERVICE
 
 eureka:
   client:

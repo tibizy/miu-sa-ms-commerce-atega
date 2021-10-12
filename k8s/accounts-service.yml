@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accounts-service-app
+  labels:
+    app: accounts-service-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: accounts-service-app
+  template:
+    metadata:
+      labels:
+        app: accounts-service-app
+    spec:
+      containers:
+      - name: accounts-service-app
+        image: djff94/account-service:0.0.1-SNAPSHOT
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 8282
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: accounts-service-svc
+spec:
+  selector:
+    app: accounts-service-app
+  ports:
+  - port: 80
+    targetPort: 8282
+
