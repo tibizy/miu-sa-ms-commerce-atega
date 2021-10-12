@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("api/payment")
 public class PaymentController {
 
     @Autowired
-    private ProcessTransaction ProcessTransaction;
+    private ProcessTransaction processTransaction;
 
-    @RequestMapping(value = "/payment", method = RequestMethod.POST)
-    @Async
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<BasicResponse> makePayment(@RequestBody PaymentDTO request){
-        BasicResponse response = ProcessTransaction.makePayment(request);
+        BasicResponse response = processTransaction.makePayment(request);
 
         if(!response.getSuccessful()){
-            return new ResponseEntity<BasicResponse>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<BasicResponse>(response, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<BasicResponse>(HttpStatus.OK);
+        return new ResponseEntity<BasicResponse>(response, HttpStatus.OK);
     }
 }
