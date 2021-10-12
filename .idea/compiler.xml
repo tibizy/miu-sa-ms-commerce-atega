@@ -19,11 +19,17 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="account-service" target="11" />
+<<<<<<< HEAD
+      <module name="BankService" target="11" />
+      <module name="CardService" target="11" />
+      <module name="config-server" target="11" />
+=======
       <module name="auth-service" target="11" />
       <module name="BankService" target="11" />
       <module name="CardService" target="11" />
       <module name="config-server" target="11" />
       <module name="gateway-service" target="11" />
+>>>>>>> 7a8ee08f9cb2f53e6b2377bc007a1738003af856
       <module name="PaymentService" target="11" />
       <module name="registry-service" target="11" />
       <module name="shipping-service" target="17" />
@@ -35,10 +41,14 @@
       <module name="CardService" options="-parameters" />
       <module name="PaymentService" options="-parameters" />
       <module name="account-service" options="-parameters" />
+<<<<<<< HEAD
+      <module name="config-server" options="-parameters" />
+=======
       <module name="auth-service" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="registry-service" options="-parameters" />
+>>>>>>> 7a8ee08f9cb2f53e6b2377bc007a1738003af856
       <module name="shipping-service" options="-parameters" />
     </option>
   </component>
