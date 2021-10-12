@@ -4,6 +4,7 @@ import miu.sa.accountservice.exceptions.ResourceNotFoundException;
 import miu.sa.accountservice.model.AccountDto;
 import miu.sa.accountservice.model.entity.Account;
 import miu.sa.accountservice.repository.AccountRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +18,15 @@ public class AccountService {
         this.repository = repository;
     }
 
+    public boolean auth(Account account){
+        return repository.findByEmailAndPassword(account.getEmail(), account.getPassword())
+                .isPresent();
+    }
+
     public AccountDto save(Account account) {
         // TODO: 11/7/21 password encryption
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        account.setPassword(encoder.encode(account.getPassword()));
         account.setActive(true);
         Account acct = repository.save(account);
         return new AccountDto(acct.getId(), acct.getEmail(), acct.getFirstName(), acct.getLastName(), acct.isActive(), acct.getAddresses(), acct.getPayments());
@@ -68,5 +76,11 @@ public class AccountService {
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found for this id :: " + id));
         acct.setActive(true);
         return save(acct);
+    }
+
+    public Account findByEmail(String email) {
+        return repository.findByEmail(email).orElseThrow(
+                () -> new ResourceNotFoundException("Account " + email + " not found")
+        );
     }
 }

@@ -2,6 +2,7 @@ package edu.miu.sa.paymentservice.dtos;
 
 
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Customer {
     private Long id;
@@ -57,6 +58,18 @@ public class Customer {
 
     public void setPayments(List<Payment> payments) {
         this.payments = payments;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Customer.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("email='" + email + "'")
+                .add("firstName='" + firstName + "'")
+                .add("lastName='" + lastName + "'")
+                .add("addresses=" + addresses)
+                .add("payments=" + payments)
+                .toString();
     }
 }
 
