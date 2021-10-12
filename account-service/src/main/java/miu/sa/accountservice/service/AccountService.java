@@ -26,7 +26,7 @@ public class AccountService {
     public AccountDto save(Account account) {
         // TODO: 11/7/21 password encryption
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        account.setPassword(encoder.encode(account.getPassword()));
+//        account.setPassword(encoder.encode(account.getPassword()));
         account.setActive(true);
         Account acct = repository.save(account);
         return new AccountDto(acct.getId(), acct.getEmail(), acct.getFirstName(), acct.getLastName(), acct.isActive(), acct.getAddresses(), acct.getPayments());
