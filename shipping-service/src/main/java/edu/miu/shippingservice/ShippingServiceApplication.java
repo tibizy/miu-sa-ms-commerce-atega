@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(basePackages = "edu.miu.shippingservice.repository")
+//@EnableJpaRepositories(basePackages = "edu.miu.shippingservice.repository")
 @SpringBootApplication
 @EnableEurekaClient
 public class ShippingServiceApplication {

@@ -41,7 +41,6 @@ spec:
     - port: 3306
   selector:                       # Selects any Pod with labels `app=polling-app,tier=mysql`
     app: account-service-mysql-db
-    tier: mysql
   clusterIP: None
 # type: post
 ---
@@ -55,14 +54,11 @@ spec:
   selector:
     matchLabels:                    # This deployment applies to the Pods matching the specified labels
       app: account-service-mysql-db
-      tier: mysql
-  strategy:
-    type: Recreate
+  strategy: {}
   template:                         # Template for the Pods in this deployment
     metadata:
       labels:                       # Labels to be applied to the Pods in this deployment
         app: account-service-mysql-db
-        tier: mysql
     spec:                           # The spec for the containers that will be run inside the Pods in this deployment
       containers:
       - image: mysql:5.7            # The container image
@@ -78,11 +74,6 @@ spec:
             secretKeyRef:
               name: mysql-db-url
               key: database
-        # - name: MYSQL_USER
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: mysql-user-pass
-        #       key: username
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:

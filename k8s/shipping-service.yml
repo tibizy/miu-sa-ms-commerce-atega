@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: accounts-service-app
+  name: shipping-service-app
   labels:
-    app: accounts-service-app
+    app: shipping-service-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: accounts-service-app
+      app: shipping-service-app
   template:
     metadata:
       labels:
-        app: accounts-service-app
+        app: shipping-service-app
     spec:
       containers:
-      - name: accounts-service-app
-        image: djff94/account-service:0.0.1-SNAPSHOT
+      - name: shipping-service-app
+        image: djff94/shipping-service:0.0.1-SNAPSHOT
         imagePullPolicy: Always
         # resources:
         #   limits:
         #     memory: "128Mi"
         #     cpu: "0.2"
         ports:
-          - containerPort: 8282
+          - containerPort: 8383
         env:
           - name: SPRING_DATASOURCE_PASSWORD
             value: root
@@ -39,11 +39,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: accounts-service-svc
+  name: shipping-service-svc
 spec:
   selector:
-    app: accounts-service-app
+    app: shipping-service-app
   ports:
   - port: 80
-    targetPort: 8282
+    targetPort: 8383
 
