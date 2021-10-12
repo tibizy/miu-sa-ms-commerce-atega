@@ -2,37 +2,36 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="BankService" />
-        <module name="auth-service" />
-        <module name="gateway-service" />
-        <module name="registry-service" />
+        <module name="ms.commerce-gateway" />
+        <module name="ms.commerce-registry" />
+        <module name="orders" />
         <module name="CardService" />
+        <module name="ms.commerce-auth" />
         <module name="account-service" />
         <module name="PaymentService" />
         <module name="shipping-service" />
+        <module name="demo2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="account-service" target="11" />
-<<<<<<< HEAD
       <module name="BankService" target="11" />
       <module name="CardService" target="11" />
       <module name="config-server" target="11" />
-=======
-      <module name="auth-service" target="11" />
-      <module name="BankService" target="11" />
-      <module name="CardService" target="11" />
-      <module name="config-server" target="11" />
-      <module name="gateway-service" target="11" />
->>>>>>> 7a8ee08f9cb2f53e6b2377bc007a1738003af856
+      <module name="demo2" target="11" />
+      <module name="ms.commerce-auth" target="11" />
+      <module name="ms.commerce-gateway" target="11" />
+      <module name="ms.commerce-registry" target="11" />
+      <module name="orders" target="11" />
       <module name="PaymentService" target="11" />
-      <module name="registry-service" target="11" />
-      <module name="shipping-service" target="17" />
+      <module name="shipping-service" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -41,14 +40,12 @@
       <module name="CardService" options="-parameters" />
       <module name="PaymentService" options="-parameters" />
       <module name="account-service" options="-parameters" />
-<<<<<<< HEAD
       <module name="config-server" options="-parameters" />
-=======
-      <module name="auth-service" options="-parameters" />
-      <module name="config-server" options="-parameters" />
-      <module name="gateway-service" options="-parameters" />
-      <module name="registry-service" options="-parameters" />
->>>>>>> 7a8ee08f9cb2f53e6b2377bc007a1738003af856
+      <module name="demo2" options="-parameters" />
+      <module name="ms.commerce-auth" options="-parameters" />
+      <module name="ms.commerce-gateway" options="-parameters" />
+      <module name="ms.commerce-registry" options="-parameters" />
+      <module name="orders" options="-parameters" />
       <module name="shipping-service" options="-parameters" />
     </option>
   </component>

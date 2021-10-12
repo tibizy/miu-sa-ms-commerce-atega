@@ -26,15 +26,15 @@ public class ProcessTransaction {
         Customer customer = accountService.getCustomer(request.customerReference);
 
         //get default payment method
-        if(customer.getPayments().stream().distinct().){
-
-        }
+//        if(customer.getPayments().stream().distinct().){
+//
+//        }
 
 
         switch(request.type){
             case CARD:
 
-                response = cardService.payByCard();
+//                response = cardService.payByCard();
                 break;
             case BANK:
                 response = bankService.payByBank(new Object());
@@ -49,7 +49,7 @@ public class ProcessTransaction {
         }
 
 
-        transactionService.updateTransaction();
+//        transactionService.updateTransaction();
         return response;
     }
 }

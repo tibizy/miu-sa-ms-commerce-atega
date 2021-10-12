@@ -17,6 +17,11 @@ public class AccountService {
         this.repository = repository;
     }
 
+    public boolean auth(Account account){
+        return repository.findByEmailAndPassword(account.getEmail(), account.getPassword())
+                .isPresent();
+    }
+
     public AccountDto save(Account account) {
         // TODO: 11/7/21 password encryption
         account.setActive(true);
