@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd973da2-46a6-4b64-b62b-fdb525a89e50" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/miu/sa/paymentservice/controllers/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/miu/sa/paymentservice/controllers/PaymentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/miu/sa/paymentservice/dtos/BasicResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/miu/sa/paymentservice/dtos/BasicResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/miu/sa/paymentservice/services/ProcessTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/miu/sa/paymentservice/services/ProcessTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankService/src/main/java/edu/miu/sa/bankservice/controllers/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankService/src/main/java/edu/miu/sa/bankservice/controllers/PaymentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankService/src/main/java/edu/miu/sa/bankservice/dto/BasicResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankService/src/main/java/edu/miu/sa/bankservice/dto/BasicResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankService/src/main/java/edu/miu/sa/bankservice/dto/PaymentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankService/src/main/java/edu/miu/sa/bankservice/dto/PaymentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BankService/src/main/java/edu/miu/sa/bankservice/services/BankPaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BankService/src/main/java/edu/miu/sa/bankservice/services/BankPaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,19 +63,6 @@
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PaymentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="PaymentService" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="edu.miu.sa.paymentservice.PaymentServiceApplication" />
@@ -109,5 +97,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

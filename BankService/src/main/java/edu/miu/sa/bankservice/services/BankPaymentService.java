@@ -7,14 +7,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BankPaymentService {
+    private static String[] respCode = {"00", "01"};
+    private static String[] respMsgs = {"Successful", "Amount must be $20 or more"};
     @Async
     public BasicResponse pay(PaymentDTO request){
         BasicResponse response = new BasicResponse(false);
         if(request.getAmount() < 20){
-            return response;
+            response.setResponseCode(respCode[1]);
+            response.setResponseDescription(respMsgs[1]);
         }
         else{
-            response.isSuccessful = true;
+            response.setSuccessful(true);
+            response.setResponseCode(respCode[0]);
+            response.setResponseDescription(respMsgs[0]);
         }
         return response;
     }

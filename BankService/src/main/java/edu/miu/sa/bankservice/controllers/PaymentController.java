@@ -13,18 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("api/bank")
 public class PaymentController {
     @Autowired
     BankPaymentService bankPaymentService;
 
-    @RequestMapping(value = "/bank/pay", method = RequestMethod.POST)
+    @RequestMapping(value = "/pay", method = RequestMethod.POST)
     @Async
     public ResponseEntity<BasicResponse> cardPayment(@RequestBody PaymentDTO request){
         BasicResponse response = bankPaymentService.pay(request);
 
-        if(!response.isSuccessful){
-            return new ResponseEntity<BasicResponse>(HttpStatus.BAD_REQUEST);
+        if(!response.getSuccessful()){
+            return new ResponseEntity<BasicResponse>(response, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<BasicResponse>(HttpStatus.OK);
+        return new ResponseEntity<BasicResponse>(response, HttpStatus.OK);
     }
 }
