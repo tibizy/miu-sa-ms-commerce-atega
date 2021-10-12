@@ -1,8 +1,11 @@
 package miu.sa.accountservice.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import miu.sa.accountservice.model.AccountDto;
 import miu.sa.accountservice.model.entity.Account;
 import miu.sa.accountservice.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +16,11 @@ import java.util.List;
 @RestController
 @RequestMapping("api/account")
 @RefreshScope
+@Slf4j
 public class AccountController {
 
+    @Value("${welcome.message:default welcome}")
+    String message;
     private final AccountService service;
     private final Environment env;
 
@@ -25,7 +31,14 @@ public class AccountController {
 
     @GetMapping("test-config")
     public ResponseEntity<?> testConfig(){
-        return ResponseEntity.ok(env.getProperty("welcome.message"));
+//        env.getProperty("welcome.message:default welcome")
+        return ResponseEntity.ok(message);
+    }
+
+    //getAccount by Email
+    @PostMapping("load")
+    public ResponseEntity<Account> findAccountByEmail(@RequestBody AccountDto accountDto) {
+        return ResponseEntity.ok().body(service.findByEmail(accountDto.getEmail()));
     }
 
     @PostMapping("create")
@@ -35,6 +48,7 @@ public class AccountController {
 
     @GetMapping
     public ResponseEntity<List<AccountDto>> findAll() {
+        log.info("findAll controller");
         return ResponseEntity.ok(service.findAll());
     }
 
