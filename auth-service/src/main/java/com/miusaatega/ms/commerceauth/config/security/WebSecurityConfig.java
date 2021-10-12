@@ -54,7 +54,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(format("%s/**", restApiDocPath)).permitAll()
                 .antMatchers(format("%s/**", swaggerPath)).permitAll()
                 //endpoints
-                .antMatchers("/login").permitAll()
+//                .antMatchers("/login").permitAll()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/admin/**").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated().and()
