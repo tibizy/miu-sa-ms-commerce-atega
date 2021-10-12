@@ -36,9 +36,9 @@ public class AccountController {
     }
 
     //getAccount by Email
-    @PostMapping("load")
-    public ResponseEntity<Account> findAccountByEmail(@RequestBody AccountDto accountDto) {
-        return ResponseEntity.ok().body(service.findByEmail(accountDto.getEmail()));
+    @GetMapping("login/{email}")
+    public ResponseEntity<Account> findAccountByEmail(@PathVariable(value = "email") String email) {
+        return ResponseEntity.ok().body(service.findByEmail(email));
     }
 
     @PostMapping("create")
