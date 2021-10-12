@@ -1,10 +1,10 @@
 package com.djff.orders.controllers;
 
 import com.djff.orders.Entities.OrderModel;
-import dot.request.OrderRequest;
-import dot.request.PaymentRequest;
-import dot.response.PaymentResponse;
-import dot.response.ShippingResponse;
+import com.djff.orders.dot.request.OrderRequest;
+import com.djff.orders.dot.request.PaymentRequest;
+import com.djff.orders.dot.response.PaymentResponse;
+import com.djff.orders.dot.response.ShippingResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.djff.orders.services.OrderService;

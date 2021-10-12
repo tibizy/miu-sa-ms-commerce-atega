@@ -2,8 +2,8 @@ package com.djff.orders.services;
 
 import com.djff.orders.Entities.OrderModel;
 import com.djff.orders.Entities.ProductModel;
-import dot.request.OrderRequest;
-import dot.request.ProductRequest;
+import com.djff.orders.dot.request.OrderRequest;
+import com.djff.orders.dot.request.ProductRequest;
 import org.springframework.stereotype.Service;
 import com.djff.orders.repositories.OrderRepository;
 import java.util.List;
