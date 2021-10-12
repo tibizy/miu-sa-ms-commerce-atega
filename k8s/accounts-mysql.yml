@@ -65,20 +65,11 @@ spec:
         name: account-mysql-db
         env:                        # Environment variables passed to the container 
         - name: MYSQL_ROOT_PASSWORD 
-          valueFrom:                # Read environment variables from kubernetes secrets
-            secretKeyRef:
-              name: mysql-root-pass
-              key: password
+          value: root
         - name: MYSQL_DATABASE
-          valueFrom:
-            secretKeyRef:
-              name: mysql-db-url
-              key: database
+          value: testdb
         - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-user-pass
-              key: password
+          value: root
         ports:
         - containerPort: 3306        # The port that the container exposes       
           name: account-mysql
