@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.miusaatega</groupId>
-	<artifactId>ms.commerce-auth</artifactId>
+	<artifactId>auth-sevice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>auth-service</name>
 	<description>Demo project for Spring Boot</description>
