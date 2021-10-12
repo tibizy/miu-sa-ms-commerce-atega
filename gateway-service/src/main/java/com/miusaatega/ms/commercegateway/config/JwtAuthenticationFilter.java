@@ -25,19 +25,18 @@ import java.util.function.Predicate;
 @Component
 public class JwtAuthenticationFilter implements GatewayFilter {
 
-//    @Autowired
-//    private JwtUtil jwtUtil;
-
     @Value("${services.url.auth}")
     String authServiceUrl;
 
     @Autowired        // NO LONGER auto-created by Spring Cloud (see below)
-    @LoadBalanced     // Explicitly request the load-balanced template
-    // with Ribbon built-in
+    @LoadBalanced     // Explicitly request the load-balanced template with Ribbon built-in
     protected RestTemplate restTemplate;
 
     @Autowired
     private WebClient.Builder webClientBuilder;
+
+    @Value("${services.token}")
+    private String accountServiceToken;
 
     final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -58,14 +57,11 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
                 return response.setComplete();
             }
-            System.out.println("Filter" +  "got here");
 
             final String token = request.getHeaders().getOrEmpty("Authorization").get(0);
 
             try {
-
-                System.out.println("token: " + token);
-
+//                System.out.println("token: " + token);
                 HashMap<String, Object> param = new HashMap<>();
                 param.put("token", token.replace("Bearer ", ""));
 
@@ -79,12 +75,14 @@ public class JwtAuthenticationFilter implements GatewayFilter {
                             return r.bodyToMono(String.class);
                         })
                         .flatMap(r -> {
-                            System.out.println("idr: " + r);
                             try {
                                 JsonNode root = objectMapper.readTree(r);
                                 String id = root.path("id").asText();
                                 if(id != null) {
-                                    exchange.getRequest().mutate().header("id", id).build();
+                                    exchange.getRequest().mutate().
+                                            header("id", id).
+                                            header("Authorization", String.format("Basic %s", accountServiceToken)).
+                                            build();
                                     System.out.println("id: " + id);
                                 }
                             } catch (JsonProcessingException e) {
