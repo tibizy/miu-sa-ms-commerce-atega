@@ -3,6 +3,7 @@ package edu.miu.sa.paymentservice.dtos;
 public class BasicResponse {
     private Boolean isSuccessful;
     private String responseCode;
+    private String responseDescription;
 
     public String getResponseCode() {
         return responseCode;
@@ -20,7 +21,6 @@ public class BasicResponse {
         this.responseDescription = responseDescription;
     }
 
-    private String responseDescription;
 
     public Boolean getSuccessful() {
         return isSuccessful;

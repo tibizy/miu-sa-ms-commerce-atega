@@ -15,14 +15,12 @@ import java.time.LocalDateTime;
 public class TransactionService {
     @Autowired
     private PaymentRepository paymentRepository;
-    @Autowired
-    private Util utils;
 
-    public BasicResponse addTransaction(PaymentDTO request){
+    public BasicResponse addTransaction(PaymentDTO request, String paymentReference){
         BasicResponse response = new BasicResponse(false);
         Transaction trans = new Transaction();
         trans.customerReference = request.customerReference;
-        trans.paymentReference = utils.GenerateReference();
+        trans.paymentReference = paymentReference;
         trans.orderNumber = request.orderNumber;
         trans.amount = request.amount;
         trans.type = request.type;
@@ -54,5 +52,10 @@ public class TransactionService {
         transaction.responseCode = "00";
         paymentRepository.save(transaction);
         return response;
+    }
+
+    public Transaction findTransaction(String paymentReference){
+        Transaction transaction = paymentRepository.findByPaymentReference(paymentReference);
+        return transaction;
     }
 }

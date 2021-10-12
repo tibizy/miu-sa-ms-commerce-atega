@@ -19,3 +19,5 @@ eureka:
         instance:
           hostname=localhost:
 
+            @/
+

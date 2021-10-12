@@ -1,11 +1,15 @@
 package edu.miu.sa.paymentservice.services;
 
 import edu.miu.sa.paymentservice.dtos.*;
+import edu.miu.sa.paymentservice.model.PaymentStatus;
 import edu.miu.sa.paymentservice.processor.BankService;
 import edu.miu.sa.paymentservice.processor.CardService;
+import edu.miu.sa.paymentservice.utility.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 
@@ -19,10 +23,13 @@ public class ProcessTransaction {
     private CardService cardService;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private Util utils;
 
     public BasicResponse makePayment(PaymentDTO request){
         BasicResponse response = new BasicResponse(false);
-        transactionService.addTransaction(request);
+        var payReference = utils.GenerateReference();
+        transactionService.addTransaction(request, payReference);
 
         Customer customer = accountService.getCustomer(request.customerReference);
         var customerPayments = customer.getPayments().stream().filter(x -> x.getDefault())
@@ -55,13 +62,26 @@ public class ProcessTransaction {
         }
 
         //TO DO: update payment with response from transaction services
+        var transactionDetails = transactionService.findTransaction(payReference);
         if(!response.getSuccessful()){
+            transactionDetails.responseCode = response.getResponseCode();
+            transactionDetails.responseTime = LocalDateTime.now();
+            transactionDetails.status = PaymentStatus.FAILED;
+            transactionService.updateTransaction(transactionDetails);
 
+            response.setResponseCode("99");
+            response.setResponseDescription("Payment not successful");
             return response;
         }
 
+        transactionDetails.responseCode = response.getResponseCode();
+        transactionDetails.responseTime = LocalDateTime.now();
+        transactionDetails.status = PaymentStatus.SUCCESSFUL;
+        transactionService.updateTransaction(transactionDetails);
 
-        //transactionService.updateTransaction();
+        response.setResponseCode("00");
+        response.setResponseDescription("Successful");
+
         return response;
     }
 }
