@@ -3,19 +3,17 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/orders/pom.xml" />
         <option value="$PROJECT_DIR$/BankService/pom.xml" />
         <option value="$PROJECT_DIR$/CardService/pom.xml" />
-        <option value="$PROJECT_DIR$/PaymentService/pom.xml" />
-        <option value="$PROJECT_DIR$/shipping-service/pom.xml" />
-<<<<<<< HEAD
-=======
-        <option value="$PROJECT_DIR$/ms.commerce-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/auth-service/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/PaymentService/pom.xml" />
+        <option value="$PROJECT_DIR$/account-service/pom.xml" />
         <option value="$PROJECT_DIR$/gateway-service/pom.xml" />
         <option value="$PROJECT_DIR$/registry-service/pom.xml" />
->>>>>>> 7a8ee08f9cb2f53e6b2377bc007a1738003af856
-        <option value="$PROJECT_DIR$/account-service/pom.xml" />
-        <option value="$PROJECT_DIR$/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/shipping-service/pom.xml" />
+        <option value="$PROJECT_DIR$/product-service/pom.xml" />
       </list>
     </option>
   </component>

@@ -3,6 +3,8 @@ package miu.sa.accountservice.controller;
 import miu.sa.accountservice.model.AccountDto;
 import miu.sa.accountservice.model.entity.Account;
 import miu.sa.accountservice.service.AccountService;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +12,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/account")
+@RefreshScope
 public class AccountController {
 
     private final AccountService service;
+    private final Environment env;
 
-    public AccountController(AccountService service) {
+    public AccountController(AccountService service, Environment env) {
         this.service = service;
+        this.env = env;
+    }
+
+    @GetMapping("test-config")
+    public ResponseEntity<?> testConfig(){
+        return ResponseEntity.ok(env.getProperty("welcome.message"));
     }
 
     @PostMapping("create")
