@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+  account-service:
+    build: ./
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      MYSQL_HOST: db
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/testdb?createDatabaseIfNotExist
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+    networks:
+      - spring-mysql
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: root
+    image: mysql:latest
+    ports:
+      - "3308:3306"
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    networks:
+      - spring-mysql
+#    volumes:
+#      - db-data:/var/lib/mysql
+networks:
+  spring-mysql: {}
+#volumes:
+#  db-data: {}
