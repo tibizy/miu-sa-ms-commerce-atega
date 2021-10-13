@@ -8,6 +8,10 @@ spring:
                   uri: lb://ORDER-SERVICE
                   predicates:
                       - Path=/api/orders/**
+                - id: ACCOUNT-SERVICE
+                  uri: lb:ACCOUNT-SERVICE
+                  predicates:
+                      -Path=/api/account/**
 #                - id: auth-service
 #                  uri: lb://AUTH-SERVICE
 #                  predicates:
@@ -25,10 +29,9 @@ eureka:
         registerWithEureka: true
         fetchRegistry: true
         serviceUrl:
-            defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
+            defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
     instance:
         preferIpAddress: true
-        hostname: eureka-0
 
 # HTTP Server
 server:

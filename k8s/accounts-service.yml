@@ -33,6 +33,8 @@ spec:
             value: root
           - name: SPRING_JPA_HIBERNATE_DDL-AUTO
             value: update
+          - name: EUREKA_URI
+            value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
 
 ---
 

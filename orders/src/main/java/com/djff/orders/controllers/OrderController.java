@@ -2,24 +2,18 @@ package com.djff.orders.controllers;
 
 import com.djff.orders.Entities.OrderModel;
 import com.djff.orders.dot.request.OrderRequest;
-import com.djff.orders.dot.request.PaymentRequest;
-import com.djff.orders.dot.response.PaymentResponse;
-import com.djff.orders.dot.response.ShippingResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.djff.orders.services.OrderService;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
 
     final private OrderService orderService;
-    final private RestTemplate restTemplate;
 
-    public OrderController(OrderService orderService, RestTemplate restTemplate) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
-        this.restTemplate = restTemplate;
     }
 
     @GetMapping
@@ -33,7 +27,7 @@ public class OrderController {
     }
 
     @PostMapping("/{customerId}")
-    public ResponseEntity<Object> createNewOrder(@RequestBody OrderRequest orderRequest, @PathVariable String customerId){
+    public ResponseEntity<String> createNewOrder(@RequestBody OrderRequest orderRequest, @PathVariable String customerId){
         // 1. Create new order with products
         // 2. Deduct requested products from stock
         // 3. Contact payment transaction
@@ -44,29 +38,17 @@ public class OrderController {
         OrderModel order = orderService.createOrder(orderRequest);
 
         //2.
-
+        orderService.deductProductQuantity(order);
 
         //3.
-        PaymentRequest paymentRequest = new PaymentRequest();
-        paymentRequest.setOrderNumber(order.getOrderId());
-        paymentRequest.setCustomerReference(order.getCustomerId());
-        paymentRequest.setType(PaymentRequest.PaymentType.BANK);
-        paymentRequest.setAmount(orderService.getOrderAmount(order));
+        var paymentResponse = orderService.makeOrderPayment(order);
 
-        PaymentResponse paymentResponse = restTemplate.postForObject("http://payment-service/api/payment", paymentRequest, PaymentResponse.class);
-
-        if(paymentResponse != null &&paymentResponse.getIsSuccessful()){
+        if(paymentResponse){
             orderService.updateOrderPaymentStatus(order);
-            //4.
-            ShippingResponse shippingResponse =
-                    restTemplate.getForObject("http://shipping-service/api/shipping/"+order.getOrderId(), ShippingResponse.class);
-            if(shippingResponse != null){
-                orderService.updateOrderShippingStatus(order);
-            }
+            orderService.shipOrder(order);
+            return ResponseEntity.ok("Order Created Successfully");
         } else{
-            // 5.
-            // TODO: revert the product deduction from inventory
+            return ResponseEntity.ok("Failed to create order");
         }
-        return ResponseEntity.ok(new Object());
     }
 }

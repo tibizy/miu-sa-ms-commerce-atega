@@ -1,11 +1,11 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: eureka-cm
-data:
-  eureka_service_address: http://eureka-0.eureka:8761/eureka
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: eureka-cm
+# data:
+#   eureka_service_address: http://eureka-0.eureka:8761/eureka
 
----
+# ---
 apiVersion: v1
 kind: Service
 metadata:
@@ -42,18 +42,18 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8761
-        env:
-          - name: EUREKA_SERVER_ADDRESS
-            valueFrom:
-              configMapKeyRef:
-                name: eureka-cm
-                key: eureka_service_address
+        # env:
+        #   - name: EUREKA_SERVER_ADDRESS
+        #     valueFrom:
+        #       configMapKeyRef:
+        #         name: eureka-cm
+        #         key: eureka_service_address
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: eureka-1b
+  name: eureka-lb
   labels:
     app: eureka
 spec:
