@@ -31,7 +31,7 @@ public class ProcessTransaction {
         var payReference = utils.GenerateReference();
         transactionService.addTransaction(request, payReference);
 
-        Customer customer = accountService.getCustomer(request.customerReference);
+        /*Customer customer = accountService.getCustomer(request.customerReference);
         var customerPayments = customer.getPayments().stream().filter(x -> x.getDefault())
                 .collect(Collectors.toList());
 
@@ -48,13 +48,22 @@ public class ProcessTransaction {
                 bankRequest.setRoutingNo(payment.getMetaData().getRoutingNo());
                 bankRequest.setAccountName(payment.getMetaData().getAccountName());
             }
-        }
+        }*/
 
-        switch(request.type){
+        Card cardRequest = new Card();
+        Bank bankRequest = new Bank();
+
+        switch(request.getType()){
             case CARD:
+                cardRequest.setCardNumber(request.getCardNumber());
+                cardRequest.setNameOnCard(request.getNameOnCard());
+                cardRequest.setExpDate(request.getExpDate());
                 response = cardService.payByCard(cardRequest);
                 break;
             case BANK:
+                bankRequest.setAccountNo(request.getAccountNo());
+                bankRequest.setRoutingNo(request.getRoutingNo());
+                bankRequest.setAccountName(request.getAccountName());
                 response = bankService.payByBank(bankRequest);
                 break;
             default:
