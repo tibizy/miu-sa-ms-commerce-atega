@@ -13,7 +13,13 @@ public class PaymentRequest {
     }
 
     public Long customerReference;
-    public UUID orderNumber;
+    public Long orderNumber;
     public Double amount;
     public PaymentType type;
+    private String cardNumber;
+    private String nameOnCard = null;
+    private String expDate = null;
+    private String accountNo = null;
+    private String routingNo = null;
+    private String accountName = null;
 }

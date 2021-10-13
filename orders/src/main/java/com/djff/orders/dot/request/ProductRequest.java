@@ -3,20 +3,20 @@ package com.djff.orders.dot.request;
 import java.util.UUID;
 
 public class ProductRequest {
-    private UUID productId;
+    private Long productId;
     private int quantity;
     private double price;
 
-    public ProductRequest(UUID productId, int quantity) {
+    public ProductRequest(Long productId, int quantity) {
         this.productId = productId;
         this.quantity = quantity;
     }
 
-    public UUID getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(UUID productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

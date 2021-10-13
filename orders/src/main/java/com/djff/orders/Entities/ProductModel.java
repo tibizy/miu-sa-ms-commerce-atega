@@ -1,28 +1,33 @@
 package com.djff.orders.Entities;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.UUID;
 
-@Document(collection="product")
+@Entity
 public class ProductModel {
     @Id
-    UUID productId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long productId;
     int quantity;
     double price;
+    Long prid;
+
+
 
     public ProductModel() {}
-    public ProductModel(UUID productId, int quantity) {
+    public ProductModel(Long productId, int quantity) {
         this.productId = productId;
         this.quantity = quantity;
     }
 
-    public UUID getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(UUID productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -40,5 +45,13 @@ public class ProductModel {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Long getPid() {
+        return prid;
+    }
+
+    public void setPid(Long pid) {
+        this.prid = pid;
     }
 }

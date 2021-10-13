@@ -5,6 +5,7 @@ import com.djff.orders.Entities.ProductModel;
 import com.djff.orders.dot.request.OrderRequest;
 import com.djff.orders.dot.request.PaymentRequest;
 import com.djff.orders.dot.request.ProductRequest;
+import com.djff.orders.dot.request.ProductUpdateRequest;
 import com.djff.orders.dot.response.PaymentResponse;
 import com.djff.orders.dot.response.ShippingResponse;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,7 +35,7 @@ public class OrderService {
         orderRepository.save(orderModel);
     }
 
-    public List<ProductModel> getAllProducts(UUID orderId){
+    public List<ProductModel> getAllProducts(Long orderId){
         var order = orderRepository.findById(orderId);
         return order.map(OrderModel::getProducts).orElse(null);
     }
@@ -95,5 +95,11 @@ public class OrderService {
 
     public void deductProductQuantity(OrderModel orderModel){
         System.out.println("============= Deducting order products from inventory ============");
+        List<ProductUpdateRequest.ProductUpdateObject> products =
+                orderModel.getProducts()
+                        .stream()
+                        .map(p -> new ProductUpdateRequest.ProductUpdateObject(p.getPid(), p.getQuantity()))
+                        .collect(Collectors.toList());
+        restTemplate.put("http://product-service/api/v1/products", new ProductUpdateRequest(products));
     }
 }

@@ -1,33 +1,38 @@
 package com.djff.orders.Entities;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
-@Document(collection="order")
+@Entity
 public class OrderModel {
     @Id
-    UUID orderId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long orderId;
     Long customerId;
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            targetEntity = ProductModel.class
+    )
     List<ProductModel> products;
     String paymentType;
     Boolean isPaid = false;
     Boolean isShipped = false;
 
     public OrderModel() {}
-    public OrderModel(UUID orderId, List<ProductModel> products, String paymentType) {
+    public OrderModel(Long orderId, List<ProductModel> products, String paymentType) {
         this.orderId = orderId;
         this.products = products;
         this.paymentType = paymentType;
     }
 
-    public UUID getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(UUID orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 
