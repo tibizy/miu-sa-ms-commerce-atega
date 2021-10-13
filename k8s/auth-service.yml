@@ -25,6 +25,8 @@ spec:
         ports:
           - containerPort: 8181
         env:
+          - name: S2S_LOCAL_TOKEN
+            value: YXBpLXNlcnZpY2UtYWNjb3VudDpwd2QkMjAyMQ==
           - name: EUREKA_URI
             value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
 
