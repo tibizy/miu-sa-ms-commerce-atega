@@ -19,11 +19,11 @@ public class TransactionService {
     public BasicResponse addTransaction(PaymentDTO request, String paymentReference){
         BasicResponse response = new BasicResponse(false);
         Transaction trans = new Transaction();
-        trans.customerReference = request.customerReference;
+        trans.customerReference = request.getCustomerReference();
         trans.paymentReference = paymentReference;
-        trans.orderNumber = request.orderNumber;
-        trans.amount = request.amount;
-        trans.type = request.type;
+        trans.orderNumber = request.getOrderNumber();
+        trans.amount = request.getAmount();
+        trans.type = request.getType();
         trans.status = PaymentStatus.PENDING;
         trans.requestTime = LocalDateTime.now();
         trans.dateCreated = LocalDateTime.now();
