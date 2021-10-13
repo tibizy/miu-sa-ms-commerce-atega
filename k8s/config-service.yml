@@ -24,6 +24,9 @@ spec:
         #     cpu: "500m"
         ports:
           - containerPort: 9296
+        env:
+          - name: EUREKA_URI
+            value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
 
 ---
 

@@ -1,29 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shipping-service-app
+  name: payment-service-app
   labels:
-    app: shipping-service-app
+    app: payment-service-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shipping-service-app
+      app: payment-service-app
   template:
     metadata:
       labels:
-        app: shipping-service-app
+        app: payment-service-app
     spec:
       containers:
-      - name: shipping-service-app
-        image: djff94/shipping-service:0.0.1-SNAPSHOT
+      - name: payment-service-app
+        image: djff94/payment-service:0.0.1-SNAPSHOT
         imagePullPolicy: Always
-        # resources:
-        #   limits:
-        #     memory: "128Mi"
-        #     cpu: "0.2"
         ports:
-          - containerPort: 8383
+          - containerPort: 9696
         env:
           - name: SPRING_DATASOURCE_PASSWORD
             value: root
@@ -35,17 +31,16 @@ spec:
             value: update
           - name: EUREKA_URI
             value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
-
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: shipping-service-svc
+  name: payment-service-svc
 spec:
   selector:
-    app: shipping-service-app
+    app: payment-service-app
   ports:
   - port: 80
-    targetPort: 8383
+    targetPort: 9696
 

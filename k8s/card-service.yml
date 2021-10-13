@@ -1,43 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-service-app
+  name: card-service-app
   labels:
-    app: auth-service-app
+    app: card-service-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth-service-app
+      app: card-service-app
   template:
     metadata:
       labels:
-        app: auth-service-app
+        app: card-service-app
     spec:
       containers:
-      - name: auth-service-app
-        image: djff94/auth-service:0.0.1-SNAPSHOT
+      - name: card-service-app
+        image: djff94/card-service:0.0.1-SNAPSHOT
         imagePullPolicy: Always
         # resources:
         #   limits:
         #     memory: "128Mi"
-        #     cpu: "500m"
+        #     cpu: "0.2"
         ports:
-          - containerPort: 8181
+          - containerPort: 9595
         env:
           - name: EUREKA_URI
             value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
-
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-service-svc
+  name: card-service-svc
 spec:
   selector:
-    app: auth-service-app
+    app: card-service-app
   ports:
   - port: 80
-    targetPort: 8181
+    targetPort: 9595
 

@@ -29,6 +29,8 @@ spec:
               value: orders
             - name: MONGO_HOST
               value: orders-mongo-db
+            - name: EUREKA_URI
+              value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
 
 ---
 
