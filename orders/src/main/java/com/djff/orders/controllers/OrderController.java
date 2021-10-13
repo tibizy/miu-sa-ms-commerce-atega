@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.djff.orders.services.OrderService;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/api/orders")
 public class OrderController {
 
     final private OrderService orderService;

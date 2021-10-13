@@ -9,14 +9,9 @@ spring:
                   predicates:
                       - Path=/api/orders/**
                 - id: ACCOUNT-SERVICE
-                  uri: lb:ACCOUNT-SERVICE
+                  uri: lb://ACCOUNT-SERVICE
                   predicates:
-                      -Path=/api/account/**
-#                - id: auth-service
-#                  uri: lb://AUTH-SERVICE
-#                  predicates:
-#                      - Path=/api/auth/**
-
+                      - Path=/api/account/**
 #management:
 #    endpoints:
 #        web:
