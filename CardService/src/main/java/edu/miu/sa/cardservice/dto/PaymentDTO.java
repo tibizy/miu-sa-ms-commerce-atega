@@ -2,8 +2,7 @@ package edu.miu.sa.cardservice.dto;
 
 public class PaymentDTO {
     private String cardNumber;
-    private String cardHolderName;
-    private String cvv;
+    private String nameOnCard;
     private String expDate;
     private Double amount;
 
@@ -15,20 +14,12 @@ public class PaymentDTO {
         this.cardNumber = cardNumber;
     }
 
-    public String getCardHolderName() {
-        return cardHolderName;
+    public String getNameOnCard() {
+        return nameOnCard;
     }
 
-    public void setCardHolderName(String cardHolderName) {
-        this.cardHolderName = cardHolderName;
-    }
-
-    public String getCvv() {
-        return cvv;
-    }
-
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
+    public void setNameOnCard(String nameOnCard) {
+        this.nameOnCard = nameOnCard;
     }
 
     public String getExpDate() {

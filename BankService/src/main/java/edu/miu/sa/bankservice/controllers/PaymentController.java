@@ -17,14 +17,14 @@ public class PaymentController {
     @Autowired
     BankPaymentService bankPaymentService;
 
-    @RequestMapping(value = "/bank/pay", method = RequestMethod.POST)
+    @RequestMapping(value = "/bank/pay", method = RequestMethod.GET)
     @Async
     public ResponseEntity<BasicResponse> cardPayment(@RequestBody PaymentDTO request){
         BasicResponse response = bankPaymentService.pay(request);
 
         if(!response.isSuccessful){
-            return new ResponseEntity<BasicResponse>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<BasicResponse>(response, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<BasicResponse>(HttpStatus.OK);
+        return new ResponseEntity<BasicResponse>(response, HttpStatus.OK);
     }
 }
