@@ -8,7 +8,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShippingResponse {
-    private UUID orderId;
+    private Long orderId;
     private String status;
     private String trackingID;
 }

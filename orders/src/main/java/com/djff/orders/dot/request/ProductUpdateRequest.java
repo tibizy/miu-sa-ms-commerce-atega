@@ -17,6 +17,6 @@ public class ProductUpdateRequest {
         private int quantity;
     }
 
-    List<ProductUpdateObject> products;
+    List<ProductUpdateObject> productOrders;
 
 }

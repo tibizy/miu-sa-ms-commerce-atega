@@ -3,17 +3,16 @@ package edu.miu.shippingservice.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.UUID;
 
 @Entity
 public class Shipment {
     public Shipment() {
     }
 
-    public UUID getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
-    public void setOrderId(UUID orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 
@@ -36,7 +35,7 @@ public class Shipment {
 
     @Id
     @Column(name = "orderID")
-    private UUID orderId;
+    private Long orderId;
     @Column(name = "trackingNumber")
     private String TrackingNumber;
     @Column(name = "status")

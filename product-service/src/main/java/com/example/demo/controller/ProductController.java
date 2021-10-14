@@ -45,6 +45,8 @@ public class ProductController {
 
     @PutMapping
     public ResponseEntity<String> updateMany(@RequestBody ManyProduct manyProduct){
+        System.out.println("**************************");
+        System.out.println(manyProduct.getProductOrders().size());
         manyProduct.getProductOrders().forEach(
                 productOrder -> productService.reduce(productOrder.getProductId(), productOrder.getQuantity())
         );

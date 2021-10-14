@@ -12,7 +12,7 @@ public class OrderModel {
     Long orderId;
     Long customerId;
     @OneToMany(
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.MERGE,
             fetch = FetchType.EAGER,
             targetEntity = ProductModel.class
     )

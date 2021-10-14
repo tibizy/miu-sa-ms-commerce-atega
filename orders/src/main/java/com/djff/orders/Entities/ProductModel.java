@@ -19,7 +19,7 @@ public class ProductModel {
 
     public ProductModel() {}
     public ProductModel(Long productId, int quantity) {
-        this.productId = productId;
+        this.prid = productId;
         this.quantity = quantity;
     }
 
@@ -47,11 +47,11 @@ public class ProductModel {
         this.price = price;
     }
 
-    public Long getPid() {
+    public Long getPrid() {
         return prid;
     }
 
-    public void setPid(Long pid) {
-        this.prid = pid;
+    public void setPrid(Long prid) {
+        this.prid = prid;
     }
 }

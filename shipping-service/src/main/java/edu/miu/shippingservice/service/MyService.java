@@ -26,7 +26,7 @@ public class MyService {
         return 10000 + r.nextInt(20000);
     }
 
-    public Shipment processOrder(UUID Id){
+    public Shipment processOrder(Long Id){
         Shipment shipment = new Shipment();
         shipment.setOrderId(Id);
         shipment.setTrackingNumber(getTrackingNumber());

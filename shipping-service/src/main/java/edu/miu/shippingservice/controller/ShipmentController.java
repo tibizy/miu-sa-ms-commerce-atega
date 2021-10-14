@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/shipping")
+@RequestMapping("/api/shipping")
 public class ShipmentController{
     @Autowired
     private MyService myService;
 
     @GetMapping("{id}")
-    public ResponseEntity<Shipment> shippingStatus(@PathVariable UUID id){
+    public ResponseEntity<Shipment> shippingStatus(@PathVariable Long id){
         return ResponseEntity.ok(myService.processOrder(id));
     }
 

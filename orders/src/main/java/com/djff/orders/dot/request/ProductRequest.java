@@ -7,9 +7,10 @@ public class ProductRequest {
     private int quantity;
     private double price;
 
-    public ProductRequest(Long productId, int quantity) {
+    public ProductRequest(Long productId, int quantity, double price) {
         this.productId = productId;
         this.quantity = quantity;
+        this.price = price;
     }
 
     public Long getProductId() {
