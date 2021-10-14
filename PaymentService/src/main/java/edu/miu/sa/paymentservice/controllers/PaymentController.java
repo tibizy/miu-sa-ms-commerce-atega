@@ -22,7 +22,7 @@ public class PaymentController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<BasicResponse> makePayment(@RequestBody PaymentDTO request){
         BasicResponse response = processTransaction.makePayment(request);
-
+        System.out.println(request.getCardNumber());
         if(!response.getSuccessful()){
             return new ResponseEntity<BasicResponse>(response, HttpStatus.BAD_REQUEST);
 

@@ -59,7 +59,9 @@ public class ProcessTransaction {
                 cardRequest.setNameOnCard(request.getNameOnCard());
                 cardRequest.setExpDate(request.getExpDate());
                 cardRequest.setAmount(request.getAmount());
+                System.out.println(request.getAmount());
                 response = cardService.payByCard(cardRequest);
+                System.out.println(response.getSuccessful());
                 break;
             case BANK:
                 bankRequest.setAccountNo(request.getAccountNo());

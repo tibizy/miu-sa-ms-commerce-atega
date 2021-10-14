@@ -42,12 +42,6 @@ public class CardService {
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.setBasicAuth(accountServiceToken);
 
-    //        HashMap<String, Object> param = new HashMap<>();
-    //        param.put("cardNumber", request.getCardNumber());
-    //        param.put("nameOnCard", request.getNameOnCard());
-    //        param.put("expDate", request.getExpDate());
-    //        param.put("amount", request.getAmount());
-
             HttpEntity<Card> entity = new HttpEntity(request, headers);
             //response = restTemplate.postForObject(baseUrl + path, request, BasicResponse.class);
             //response = restTemplate.postForObject(baseUrl + path, entity, BasicResponse.class);
@@ -57,8 +51,8 @@ public class CardService {
             String responseStr = restTemplate.exchange(baseUrl + path + url, HttpMethod.GET, entity, String.class).getBody();
 
             JsonNode root = objectMapper.readTree(responseStr);
-
-            response.setSuccessful(root.path("isSuccessful").asBoolean());
+            System.out.println(responseStr);
+            response.setSuccessful(root.path("successful").asBoolean());
             response.setResponseCode(root.path("responseCode").asText());
             response.setResponseDescription(root.path("responseDescription").asText());
 
