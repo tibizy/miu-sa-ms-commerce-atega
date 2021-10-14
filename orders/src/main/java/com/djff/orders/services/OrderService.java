@@ -94,10 +94,10 @@ public class OrderService {
         paymentRequest.setAccountName(orderRequest.getAccountName());
         paymentRequest.setAmount(getOrderAmount(order));
 
-//        PaymentResponse paymentResponse =
-//                restTemplate.postForObject("lb://payment-service/api/payment",
-//                        paymentRequest, PaymentResponse.class);
-        return true; //Objects.requireNonNull(paymentResponse).getIsSuccessful();
+        PaymentResponse paymentResponse =
+                restTemplate.postForObject("lb://payment-service/api/payment",
+                        paymentRequest, PaymentResponse.class);
+        return Objects.requireNonNull(paymentResponse).getIsSuccessful();
     }
 
     public void shipOrder(OrderModel order){
