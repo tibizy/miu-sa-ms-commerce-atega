@@ -2,9 +2,8 @@ package edu.miu.sa.bankservice.dto;
 
 public class PaymentDTO {
     private String accountNumber;
-    private String accountHolderName;
-    private String accountType;
-    private String bankCode;
+    private String accountName;
+    private String routingNo;
     private Double amount;
 
     public String getAccountNumber() {
@@ -15,28 +14,20 @@ public class PaymentDTO {
         this.accountNumber = accountNumber;
     }
 
-    public String getAccountHolderName() {
-        return accountHolderName;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setAccountHolderName(String accountHolderName) {
-        this.accountHolderName = accountHolderName;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
-    public String getAccountType() {
-        return accountType;
+    public String getRoutingNo() {
+        return routingNo;
     }
 
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
-
-    public String getBankCode() {
-        return bankCode;
-    }
-
-    public void setBankCode(String bankCode) {
-        this.bankCode = bankCode;
+    public void setRoutingNo(String routingNo) {
+        this.routingNo = routingNo;
     }
 
     public Double getAmount() {

@@ -3,11 +3,14 @@ package edu.miu.sa.paymentservice.processor;
 import edu.miu.sa.paymentservice.dtos.Bank;
 import edu.miu.sa.paymentservice.dtos.BasicResponse;
 import edu.miu.sa.paymentservice.dtos.Card;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,7 +24,10 @@ public class BankService {
     private String accountServiceToken;
 
     private final String path = "/api/bank/pay";
-    static RestTemplate restTemplate = new RestTemplate();
+
+    @Autowired
+    @LoadBalanced
+    protected RestTemplate restTemplate = new RestTemplate();
 
     public BasicResponse payByBank(Bank request){
         System.out.println(baseUrl);
@@ -33,7 +39,9 @@ public class BankService {
         HttpEntity<Bank> entity = new HttpEntity<>(request, headers);
 
         //response = restTemplate.postForObject(baseUrl + path, request, BasicResponse.class);
-        response = restTemplate.postForObject(baseUrl + path, entity, BasicResponse.class);
+        //response = restTemplate.postForObject(baseUrl + path, entity, BasicResponse.class);
+        response = restTemplate.exchange(baseUrl + path, HttpMethod.GET, entity, BasicResponse.class).getBody();
+
 
         return response;
 

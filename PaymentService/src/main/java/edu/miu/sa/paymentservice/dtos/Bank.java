@@ -4,6 +4,15 @@ public class Bank {
     private String accountNo;
     private String routingNo;
     private String accountName;
+    private Double amount;
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 
     public String getAccountNo() {
         return accountNo;
