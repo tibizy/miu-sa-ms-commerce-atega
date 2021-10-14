@@ -58,12 +58,14 @@ public class ProcessTransaction {
                 cardRequest.setCardNumber(request.getCardNumber());
                 cardRequest.setNameOnCard(request.getNameOnCard());
                 cardRequest.setExpDate(request.getExpDate());
+                cardRequest.setAmount(request.getAmount());
                 response = cardService.payByCard(cardRequest);
                 break;
             case BANK:
                 bankRequest.setAccountNo(request.getAccountNo());
                 bankRequest.setRoutingNo(request.getRoutingNo());
                 bankRequest.setAccountName(request.getAccountName());
+                bankRequest.setAmount(request.getAmount());
                 response = bankService.payByBank(bankRequest);
                 break;
             default:
