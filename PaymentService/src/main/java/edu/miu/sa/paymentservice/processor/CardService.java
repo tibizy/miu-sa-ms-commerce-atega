@@ -58,7 +58,7 @@ public class CardService {
 
             JsonNode root = objectMapper.readTree(responseStr);
 
-            response.setSuccessful(root.path("isSuccessful").asBoolean());
+            response.setSuccessful(root.path("successful").asBoolean());
             response.setResponseCode(root.path("responseCode").asText());
             response.setResponseDescription(root.path("responseDescription").asText());
 
