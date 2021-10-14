@@ -95,7 +95,7 @@ public class OrderService {
         paymentRequest.setAmount(getOrderAmount(order));
 
 //        PaymentResponse paymentResponse =
-//                restTemplate.postForObject("http://payment-service/api/payment",
+//                restTemplate.postForObject("lb://payment-service/api/payment",
 //                        paymentRequest, PaymentResponse.class);
         return true; //Objects.requireNonNull(paymentResponse).getIsSuccessful();
     }
