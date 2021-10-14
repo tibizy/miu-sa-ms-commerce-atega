@@ -97,7 +97,7 @@ public class OrderService {
         PaymentResponse paymentResponse =
                 restTemplate.postForObject("lb://payment-service/api/payment",
                         paymentRequest, PaymentResponse.class);
-        return Objects.requireNonNull(paymentResponse).getIsSuccessful();
+        return Objects.requireNonNull(paymentResponse).getSuccessful();
     }
 
     public void shipOrder(OrderModel order){

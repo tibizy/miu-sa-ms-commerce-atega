@@ -6,6 +6,6 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentResponse {
-    private Boolean isSuccessful;
+public class    PaymentResponse {
+    private Boolean successful;
 }
